@@ -3,6 +3,8 @@
 #include<sys/resource.h>
 #include<unordered_set>
 
+#include "state.hpp"
+
 inline constexpr bool DEV_MODE = true;
 
 class debug
@@ -14,6 +16,8 @@ private:
 
     int printMemUsage();
     int countColors(const RenderTexture2D& canvas);
+
+    State state;
 
 public:
     void Update();

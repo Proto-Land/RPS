@@ -2,7 +2,6 @@
 #include "display_manager.hpp"
 #include "asset_manager.hpp"
 #include "debug.hpp"
-#include "state.hpp"
 
 int debug::printMemUsage()
 {
@@ -59,5 +58,5 @@ void debug::Draw()
     DrawText(TextFormat("frame time: %.2f ms", GetFrameTime() * 1000.0f), xpos,70, FS, WHITE);
     DrawText(TextFormat("%d", (int)GetTime()), xpos, 90, FS, WHITE);
     DrawText(TextFormat("Colors = %d", colorsUsed), xpos, 110, FS, WHITE);
-    DrawText(TextFormat("state = %d",(int)GS), xpos, 130, FS, WHITE);
+    DrawText(TextFormat("state = %d",(int)(state.GS)), xpos, 130, FS, WHITE);
 }

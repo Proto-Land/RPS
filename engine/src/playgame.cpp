@@ -1,13 +1,14 @@
 #include "playgame.hpp"
 #include "display_manager.hpp"
+#include "asset_manager.hpp"
+#include "engine.hpp"
 
 #include "game.hpp"
-#include "assetloader.hpp"
 #include "state.hpp"
 
 void Play::playgame()
 {
-    //displayManager DM;
+    displayManager DM;
     //Game game;
     debug dbg;
     //AssetLoader AL;
@@ -18,20 +19,18 @@ void Play::playgame()
     SetTargetFPS(60);
 
     DM.initCanvas();
-    AL.InitFont();
-    AL.InitTexture();
     
-    game.changeGameState(GameState::TITLE);
+    Gctx.game.changeGameState(GameState::TITLE);
 
     while(!WindowShouldClose())
     {
         DM.scaleWindow();
-        if(!game.Update()) break;
+        if(!Gctx.game.Update()) break;
         if(DEV_MODE) dbg.Update();
 
         BeginTextureMode(DM.getCanvas());
         ClearBackground(BLACK);
-        game.Draw();
+        Gctx.game.Draw();
         EndTextureMode();
 
         BeginDrawing();
@@ -40,6 +39,10 @@ void Play::playgame()
         if(DEV_MODE) dbg.Draw();
         EndDrawing();
     }
-    AM.unloadAssets();
+    printf("before unload\n");
+    engine.AM.unloadAssets();
+    DM.unloadCanvas();
+    printf("after unload\n");
     CloseWindow();
+    printf("after close\n");
 }

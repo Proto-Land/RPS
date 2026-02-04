@@ -1,6 +1,5 @@
 #pragma once
 #include<raylib.h>
-#include "shader.hpp"
 
 class displayManager{
     private:
@@ -10,20 +9,19 @@ class displayManager{
     int offsetY = 0;
 
     static constexpr int windowWidth = 640; // initial window
-    static constexpr int windowHeight = 480;
+    static constexpr int windowHeight = 400;
 
     static constexpr int canvasWidth = 640; // canvas dimensions
-    static constexpr int canvasHeight = 480;
+    static constexpr int canvasHeight = 400;
 
     RenderTexture2D canvas;
-
-    //Shader98 shader;
 
     public:
     displayManager();
     ~displayManager();
 
     void initCanvas();
+    void unloadCanvas();
     void scaleWindow();
     void drawCanvasOnScreen() const;
 
@@ -40,4 +38,4 @@ class displayManager{
 
     const RenderTexture2D& getCanvas() const {return canvas;}
 };
-inline displayManager DM;
+//inline displayManager DM;

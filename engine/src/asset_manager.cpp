@@ -27,4 +27,13 @@ void assetManager::unloadAssets()
     textures.clear();
     for(auto& pair : fonts) UnloadFont(pair.second);
     fonts.clear();
+    unloaded = true;
+}
+
+assetManager::~assetManager()
+{
+    printf("AM destructor called\n");
+    if(!unloaded) unloadAssets();
+    printf("after AM destructor\n");
+
 }
