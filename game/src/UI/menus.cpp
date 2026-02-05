@@ -77,7 +77,7 @@ void NewGameSelectMenu::Init()
 {
     boolselected = 0;
     xpos = 200;
-    ypos = 400;
+    ypos = 350;
     selectionWidth = 80;
 }
 

@@ -1,6 +1,6 @@
 #pragma once
-#include<raylib.h>
-#include<vector>
+
+#include "player.hpp"
 
 enum class Levels{
     NONE,
@@ -20,5 +20,13 @@ class WorldMap{
     int w,h;
 };
 
-
 //LEVELS
+class Level1{
+    public:
+    void Init();
+    void Update();
+    void Draw();
+
+    private:
+    Player player;
+};

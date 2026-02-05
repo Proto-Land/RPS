@@ -1,3 +1,5 @@
+#pragma once
+
 #include "asset_manager.hpp"
 
 struct Engine{
