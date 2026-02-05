@@ -2,10 +2,6 @@
 #include<raylib.h>
 
 namespace mouseIP{
-    inline bool Rclick() { return IsMouseButtonPressed(0); }
-}
-class MInput{
-    public:
-    bool MouseRec(Rectangle Rec);
-    Vector2 mouse;
+    inline bool Rclick() { return IsMouseButtonPressed(MOUSE_BUTTON_LEFT); }
+    inline bool MouseRec(Rectangle Rec) { return CheckCollisionPointRec(GetMousePosition(), Rec); }
 };

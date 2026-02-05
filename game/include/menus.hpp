@@ -1,4 +1,6 @@
 #pragma once
+#include<raylib.h>
+#include "state.hpp"
 
 class StartingMenu{
     public:
@@ -6,10 +8,14 @@ class StartingMenu{
     void Update();
     void Draw();
 
+    State state;
+
     private:
     int xpos, ypos, ybase, spacing, selectionWidth;
     int selected;
     int optionCount;
+
+    Rectangle newGameButton, continueButton, optionsButton, quitButton;
 };
 
 class NewGameSelectMenu{

@@ -23,7 +23,8 @@ enum class StartMenu{
     NEWGAME,
     CONTINUE,
     OPTIONS,
-    QUIT
+    QUIT,
+    NONE
 };
 
 enum class NewGameMenu{
@@ -50,7 +51,7 @@ enum class PlayerState{
 struct State{
     GameState GS = GameState::NONE;
     MenuControl MC = MenuControl::NONE;
-    StartMenu SM;
+    StartMenu SM = StartMenu::NONE;
     NewGameMenu NGMenu;
     OptionMenu OpMenu;
     PauseMenu PMenu;

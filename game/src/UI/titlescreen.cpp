@@ -5,6 +5,7 @@
 #include "control.hpp"
 
 #include "engine.hpp"
+#include "mouseinput.hpp"
 #include "input_manager.hpp"
 #include<raylib.h>
 

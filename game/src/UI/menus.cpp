@@ -1,5 +1,6 @@
 //engine
 #include "input_manager.hpp"
+#include "mouseinput.hpp"
 #include "engine.hpp"
 #include<raylib.h>
 
@@ -23,48 +24,46 @@ void StartingMenu::Init()
     spacing = 60;
     selected = 0;
     optionCount = 4;
+
+    //ypos = ybase + selected * spacing
+    newGameButton = {(float)(xpos - 5), 140, 190, 50};
+    continueButton = {(float)(xpos - 5), 200, 220, 50};
+    optionsButton = {(float)(xpos - 5), 260, 190, 50};
+    quitButton = {(float)(xpos - 5), 320, 110, 50};
 }
 
 void StartingMenu::Update()
 {
-    if(Input::pressDown())
+    if(mouseIP::Rclick())
     {
-        selected++;
-        if(selected>=optionCount) selected = 0;
+        if(mouseIP::MouseRec(newGameButton)) state.SM = StartMenu::NEWGAME;
+        else if(mouseIP::MouseRec(continueButton)) state.SM = StartMenu::CONTINUE;
+        else if(mouseIP::MouseRec(optionsButton)) state.SM = StartMenu::OPTIONS;
+        else if(mouseIP::MouseRec(quitButton)) state.SM = StartMenu::QUIT;
     }
-    else if(Input::pressUp())
-    {
-        selected--;
-        if(selected<0) selected = optionCount - 1;
-    }
-    StartMenu choice = static_cast<StartMenu>(selected);
 
-    switch (choice)
+    switch(state.SM)
     {
-        case StartMenu::NEWGAME: selectionWidth = 190; break;
-        case StartMenu::CONTINUE: selectionWidth = 220; break;
-        case StartMenu::OPTIONS: selectionWidth = 190; break;
-        case StartMenu::QUIT: selectionWidth = 110; break;
-    }
-    ypos = ybase + selected * spacing;
-
-    if(Input::confirm())
-    {
-        switch(choice)
-        {
-            case StartMenu::NEWGAME: Cctx.Mcontrol.changeMenuState(MenuControl::NEWGAMEMENU); break;
-            case StartMenu::CONTINUE: break;
-            case StartMenu::OPTIONS: break;
-            case StartMenu::QUIT: Gctx.game.changeGameState(GameState::QUIT); break;
-        }
+        case StartMenu::NEWGAME: Cctx.Mcontrol.changeMenuState(MenuControl::NEWGAMEMENU); break;
+        case StartMenu::CONTINUE: break;
+        case StartMenu::OPTIONS: break;
+        case StartMenu::QUIT: Gctx.game.changeGameState(GameState::QUIT); break;
     }
 }
+
 
 void StartingMenu::Draw()
 {
     Font& globFont = engine.AM.getFont(Fonts::font98);
-    Rectangle SelRec = {(float)(xpos - 5), (float)ypos, (float)selectionWidth, 50};
-    DrawRectangleLinesEx(SelRec, 2, BLUE);
+
+    if(mouseIP::MouseRec(newGameButton)) DrawRectangleLinesEx(newGameButton, 2, BLUE);
+    else if(mouseIP::MouseRec(continueButton)) DrawRectangleLinesEx(continueButton, 2, BLUE);
+    else if(mouseIP::MouseRec(optionsButton)) DrawRectangleLinesEx(optionsButton, 2, BLUE);
+    else if(mouseIP::MouseRec(quitButton)) DrawRectangleLinesEx(quitButton, 2, BLUE);
+
+    //Rectangle SelRec = {(float)(xpos - 5), (float)ypos, (float)selectionWidth, 50};
+    //DrawRectangleLinesEx(SelRec, 2, BLUE);
+
     DrawTextEx(globFont, "NEWGAME", {(float)xpos, 140}, 50, 1, YELLOW);
     DrawTextEx(globFont, "CONTINUE", {(float)xpos, 200}, 50, 1, YELLOW);
     DrawTextEx(globFont, "OPTIONS", {(float)xpos, 260}, 50, 1, YELLOW);
