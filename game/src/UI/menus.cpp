@@ -18,7 +18,6 @@
 //  START MENU
 void StartingMenu::Init()
 {
-    State state;
     xpos = 50;
     ybase = 140;
     spacing = 60;
@@ -30,16 +29,17 @@ void StartingMenu::Init()
     continueButton = {(float)(xpos - 5), 200, 220, 50};
     optionsButton = {(float)(xpos - 5), 260, 190, 50};
     quitButton = {(float)(xpos - 5), 320, 110, 50};
+    printf("init ng: x:%.2f y:%.2f w:%.2f h:%.2f\n", newGameButton.x, newGameButton.y, newGameButton.width, newGameButton.height);
 }
 
 void StartingMenu::Update()
 {
     if(mouseIP::Rclick())
     {
-        if(mouseIP::MouseRec(newGameButton)) state.SM = StartMenu::NEWGAME;
-        else if(mouseIP::MouseRec(continueButton)) state.SM = StartMenu::CONTINUE;
-        else if(mouseIP::MouseRec(optionsButton)) state.SM = StartMenu::OPTIONS;
-        else if(mouseIP::MouseRec(quitButton)) state.SM = StartMenu::QUIT;
+        if(mousepoint.MouseRec(newGameButton)) state.SM = StartMenu::NEWGAME;
+        else if(mousepoint.MouseRec(continueButton)) state.SM = StartMenu::CONTINUE;
+        else if(mousepoint.MouseRec(optionsButton)) state.SM = StartMenu::OPTIONS;
+        else if(mousepoint.MouseRec(quitButton)) state.SM = StartMenu::QUIT;
     }
 
     switch(state.SM)
@@ -56,10 +56,10 @@ void StartingMenu::Draw()
 {
     Font& globFont = engine.AM.getFont(Fonts::font98);
 
-    if(mouseIP::MouseRec(newGameButton)) DrawRectangleLinesEx(newGameButton, 2, BLUE);
-    else if(mouseIP::MouseRec(continueButton)) DrawRectangleLinesEx(continueButton, 2, BLUE);
-    else if(mouseIP::MouseRec(optionsButton)) DrawRectangleLinesEx(optionsButton, 2, BLUE);
-    else if(mouseIP::MouseRec(quitButton)) DrawRectangleLinesEx(quitButton, 2, BLUE);
+    if(mousepoint.MouseRec(newGameButton)) DrawRectangleLinesEx(newGameButton, 2, BLUE);
+    else if(mousepoint.MouseRec(continueButton)) DrawRectangleLinesEx(continueButton, 2, BLUE);
+    else if(mousepoint.MouseRec(optionsButton)) DrawRectangleLinesEx(optionsButton, 2, BLUE);
+    else if(mousepoint.MouseRec(quitButton)) DrawRectangleLinesEx(quitButton, 2, BLUE);
 
     //Rectangle SelRec = {(float)(xpos - 5), (float)ypos, (float)selectionWidth, 50};
     //DrawRectangleLinesEx(SelRec, 2, BLUE);
@@ -68,6 +68,11 @@ void StartingMenu::Draw()
     DrawTextEx(globFont, "CONTINUE", {(float)xpos, 200}, 50, 1, YELLOW);
     DrawTextEx(globFont, "OPTIONS", {(float)xpos, 260}, 50, 1, YELLOW);
     DrawTextEx(globFont, "QUIT", {(float)xpos, 320}, 50, 1, YELLOW);
+
+    DrawRectangleLinesEx(newGameButton, 1, RED);
+    DrawRectangleLinesEx(continueButton, 1, RED);
+    DrawRectangleLinesEx(optionsButton, 1, RED);
+    DrawRectangleLinesEx(quitButton, 1, RED);
 }
 
 //-------------------------------------------------------------------------------

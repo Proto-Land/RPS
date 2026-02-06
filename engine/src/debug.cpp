@@ -1,7 +1,9 @@
 #include "debug.hpp"
-#include "display_manager.hpp"
 #include "asset_manager.hpp"
-#include "debug.hpp"
+#include "engine.hpp"
+#include "mouseinput.hpp"
+
+#include "menus.hpp"
 
 int debug::printMemUsage()
 {
@@ -42,6 +44,11 @@ void debug::Update()
         colorsUsed = countColors(DM.getCanvas());
     }
     */
+    cm = mousepoint.CMouse;
+    ngX = start.newGameButton.x;
+    ngY = start.newGameButton.y;
+    ngW = start.newGameButton.width;
+    ngH = start.newGameButton.height;
 
     if(IsKeyPressed(KEY_TAB)) enabled = !enabled;
 }
@@ -52,6 +59,8 @@ void debug::Draw()
 
     int FS = 20;
     int xpos = 10;
+
+
     DrawText(TextFormat("FPS: %d", GetFPS()), xpos,10, FS, WHITE);
     DrawText(TextFormat("Gamepad: %s", GetGamepadName(0)), xpos,30, FS, WHITE);
     DrawText(TextFormat("memory: %d mb", memory), xpos, 50, FS, WHITE);
@@ -59,4 +68,10 @@ void debug::Draw()
     DrawText(TextFormat("%d", (int)GetTime()), xpos, 90, FS, WHITE);
     DrawText(TextFormat("Colors = %d", colorsUsed), xpos, 110, FS, WHITE);
     DrawText(TextFormat("state = %d",(int)(state.GS)), xpos, 130, FS, WHITE);
+
+    //menu button UI debug
+    
+    DrawText(TextFormat("CMouse: x:%.2f y:%.2f", cm.x, cm.y), xpos, 150, FS, WHITE);
+    DrawText(TextFormat("newgame button: x:%.2f y:%.2f w:%.2f h%.2f",ngX, ngY, ngW, ngH), xpos, 170, FS, WHITE);
+
 }

@@ -18,7 +18,7 @@ void TitleScreen::Init()
 
 void TitleScreen::Update()
 {
-    if(Input::confirm())
+    if(mouseIP::Rclick())
     {
         Gctx.game.changeGameState(GameState::MENU);
         Cctx.Mcontrol.changeMenuState(MenuControl::STARTMENU);

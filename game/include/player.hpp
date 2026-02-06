@@ -1,4 +1,5 @@
 #pragma once
+#include<raylib.h>
 
 class Player{
     public:
@@ -12,4 +13,7 @@ class Player{
     void Init();
     void Update();
     void Draw();
+
+    private:
+    Rectangle rockButton, paperButton, scissorButton;
 };

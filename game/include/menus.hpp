@@ -8,6 +8,8 @@ class StartingMenu{
     void Update();
     void Draw();
 
+    Rectangle newGameButton, continueButton, optionsButton, quitButton;
+    
     State state;
 
     private:
@@ -15,7 +17,6 @@ class StartingMenu{
     int selected;
     int optionCount;
 
-    Rectangle newGameButton, continueButton, optionsButton, quitButton;
 };
 
 class NewGameSelectMenu{

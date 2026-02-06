@@ -3,6 +3,9 @@
 void Player::Init()
 {
     Moves::NONE;
+    rockButton = {};
+    paperButton = {};
+    scissorButton = {};
 }
 
 void Player::Update()

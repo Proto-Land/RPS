@@ -3,5 +3,12 @@
 
 namespace mouseIP{
     inline bool Rclick() { return IsMouseButtonPressed(MOUSE_BUTTON_LEFT); }
-    inline bool MouseRec(Rectangle Rec) { return CheckCollisionPointRec(GetMousePosition(), Rec); }
 };
+
+class Mpoint{
+    public:
+    bool MouseRec(Rectangle Rec);
+    Vector2 CMouse;
+    float scale = 1;
+};
+inline Mpoint mousepoint;
