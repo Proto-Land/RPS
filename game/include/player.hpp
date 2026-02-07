@@ -15,5 +15,7 @@ class Player{
     void Draw();
 
     private:
+    int spacing;
+    Rectangle b;
     Rectangle rockButton, paperButton, scissorButton;
 };

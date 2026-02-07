@@ -19,10 +19,6 @@
 void StartingMenu::Init()
 {
     xpos = 50;
-    ybase = 140;
-    spacing = 60;
-    selected = 0;
-    optionCount = 4;
 
     //ypos = ybase + selected * spacing
     newGameButton = {(float)(xpos - 5), 140, 190, 50};

@@ -27,5 +27,5 @@ void WorldMap::Draw()
 {
     Font& globFont = engine.AM.getFont(Fonts::font98);
     DrawRectangle(0,0, w, h, GREEN);   
-    DrawTextEx(globFont, "Press SPACE to enter lvl1", {100, 600}, 30, 1, YELLOW); 
+    DrawTextEx(globFont, "Press SPACE to enter lvl1", {100, 200}, 30, 1, YELLOW); 
 }
