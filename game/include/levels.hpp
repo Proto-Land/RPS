@@ -30,3 +30,9 @@ class Level1{
     private:
     Player player;
 };
+
+struct lvlCtrl{
+    WorldMap WMap;
+    Level1 lvl1;
+};
+extern lvlCtrl level;

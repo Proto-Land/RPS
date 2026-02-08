@@ -8,14 +8,12 @@ class StartingMenu{
     void Update();
     void Draw();
 
-    
+    Rectangle newGameButton, continueButton, optionsButton, quitButton;
     
     State state;
 
     private:
     int xpos, ypos, ybase, spacing, selectionWidth;
-
-    Rectangle newGameButton, continueButton, optionsButton, quitButton;
 };
 
 class NewGameSelectMenu{
@@ -24,9 +22,11 @@ class NewGameSelectMenu{
     void Update();
     void Draw();
 
+    Rectangle yesButton, noButton;
+
     private:
     bool boolselected;
-    int xpos, ypos, selectionWidth;
+    float ypos;
 };
 
 class ContinueMenu{

@@ -9,6 +9,8 @@
 #include "gamecontroller.hpp"
 #include "control.hpp"
 
+lvlCtrl level;
+
 void WorldMap::Init()
 {
     w = 640;

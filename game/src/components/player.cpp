@@ -7,7 +7,7 @@ void Player::Init()
     Moves::NONE;
 
     b = {180, 260, 80, 80};
-    spacing{10};
+    spacing = 10;
 
     rockButton = {b.x, b.y, b.width, b.height};
     paperButton = {b.x + b.width + spacing, b.y, b.width, b.height};
@@ -28,5 +28,5 @@ void Player::Draw()
 
     DrawTextEx(globFont, "R", {rockButton.x, rockButton.y}, 20, 1, YELLOW);
     DrawTextEx(globFont, "P", {paperButton.x, paperButton.y}, 20, 1, YELLOW);
-    DRawTextEx(globFont, "S", {scissorButton.x, scissorButton.y}, 20, 1, YELLOW);
+    DrawTextEx(globFont, "S", {scissorButton.x, scissorButton.y}, 20, 1, YELLOW);
 }

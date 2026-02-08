@@ -76,29 +76,24 @@ void StartingMenu::Draw()
 void NewGameSelectMenu::Init()
 {
     boolselected = 0;
-    xpos = 200;
-    ypos = 350;
-    selectionWidth = 80;
+    ypos = 300;
+
+    yesButton = {250, ypos, 80, 40};
+    noButton = {400, ypos, 60, 40};
 }
 
 void NewGameSelectMenu::Update()
 {
-    if(Input::pressLeft()) boolselected = 0;
-    else if(Input::pressRight()) boolselected = 1;
-
-    xpos = (boolselected == 0) ? 200 : 360;
-    selectionWidth = (boolselected == 0) ? 80 : 60;
-    NewGameMenu choice = static_cast<NewGameMenu>(boolselected);
-
-    if(Input::confirm())
+    if(mouseIP::Rclick())
     {
-        if(choice == NewGameMenu::YES)
+        if(mousepoint.MouseRec(yesButton))
         {
             Gctx.game.changeGameState(GameState::GAME);
             Cctx.Gcontrol.changeLevelState(Levels::MAP);
-        } 
-        else Cctx.Mcontrol.changeMenuState(MenuControl::STARTMENU);
+        }
+        else if(mousepoint.MouseRec(noButton)) Cctx.Mcontrol.changeMenuState(MenuControl::STARTMENU);
     }
+    
 }
 
 void NewGameSelectMenu::Draw()
@@ -106,11 +101,21 @@ void NewGameSelectMenu::Draw()
 
     Font& globFont = engine.AM.getFont(Fonts::font98);
     DrawRectangle(40,40,560,400, DARKGRAY);
-    DrawRectangleLines(40,40,560,400, DARKGRAY);
+    DrawRectangleLines(40,40,560,400, DARKBLUE);
+
+    if(mousepoint.MouseRec(yesButton))
+    {
+        DrawRectangleRec(yesButton, DARKBLUE);
+        boolselected = 0;
+    }
+    else if(mousepoint.MouseRec(noButton))
+    {
+        DrawRectangleRec(noButton, DARKBLUE);
+        boolselected = 1;
+    }
     DrawTextEx(globFont, "Start New Game?", {100,40}, 60, 1, WHITE);
-    DrawRectangle(xpos-5, ypos, selectionWidth, 40, DARKBLUE);
-    DrawTextEx(globFont, "YES", {200,(float)ypos}, 40, 1, (Color)((boolselected ==0) ? WHITE : BLACK));
-    DrawTextEx(globFont, "NO", {360,(float)ypos}, 40, 1, (Color)((boolselected ==1) ? WHITE : BLACK));
+    DrawTextEx(globFont, "YES", {yesButton.x,yesButton.y}, 40, 1, (Color)((boolselected ==0) ? WHITE : BLACK));
+    DrawTextEx(globFont, "NO", {noButton.x ,noButton.y}, 40, 1, (Color)((boolselected ==1) ? WHITE : BLACK));
 
 }
 

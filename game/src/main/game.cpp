@@ -39,7 +39,7 @@ bool Game::Update()
 
 void Game::Draw()
 {
-    DrawRectangle(0,0, DM.getCanvasWidth(), DM.getCanvasHeight(), DARKGRAY);
+    DrawRectangle(0,0, DM.getCanvasWidth(), DM.getCanvasHeight(), GRAY);
     switch(state.GS)
     {
         //draw functions
