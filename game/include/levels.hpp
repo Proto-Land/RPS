@@ -1,6 +1,7 @@
 #pragma once
 
 #include "player.hpp"
+#include "rps.hpp"
 
 enum class Levels{
     NONE,
@@ -28,7 +29,7 @@ class Level1{
     void Draw();
 
     private:
-    Player player;
+    RPS rps;
 };
 
 struct lvlCtrl{

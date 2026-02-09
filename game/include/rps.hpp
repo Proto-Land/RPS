@@ -10,4 +10,5 @@ class RPS{
     void pmoveRock(AI::Moves aimove);
     void pmovePaper(AI::Moves aimove);
     void pmoveScissor(AI::Moves aimove);
+
 };

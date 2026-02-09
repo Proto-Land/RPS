@@ -2,9 +2,13 @@
 #include "engine.hpp"
 #include "filepath.hpp"
 
+p player;
+
 void Player::Init()
 {
-    Moves::NONE;
+    PlayerMove = Moves::NONE;
+    winstreak = 0;
+    resultScreen = 0;
 
     b = {180, 260, 80, 80};
     spacing = 10;
@@ -26,7 +30,25 @@ void Player::Draw()
     DrawRectangleRec(paperButton, RED);
     DrawRectangleRec(scissorButton, RED);
 
-    DrawTextEx(globFont, "R", {rockButton.x, rockButton.y}, 20, 1, YELLOW);
-    DrawTextEx(globFont, "P", {paperButton.x, paperButton.y}, 20, 1, YELLOW);
-    DrawTextEx(globFont, "S", {scissorButton.x, scissorButton.y}, 20, 1, YELLOW);
+    DrawTextEx(globFont, "R", {rockButton.x + 5, rockButton.y + 5}, 80, 1, YELLOW);
+    DrawTextEx(globFont, "P", {paperButton.x + 5, paperButton.y + 5}, 80, 1, YELLOW);
+    DrawTextEx(globFont, "S", {scissorButton.x + 5, scissorButton.y + 5}, 80, 1, YELLOW);
+}
+
+void Player::Win()
+{
+    winstreak++;
+    PlayerMove = Moves::NONE;
+}
+
+void Player::Lose()
+{
+    winstreak = 0;
+    PlayerMove = Moves::NONE;
+}
+
+void Player::Tie()
+{
+    PlayerMove = Moves::NONE;
+    return;
 }
