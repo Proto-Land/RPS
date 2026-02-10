@@ -6,8 +6,8 @@ a ai;
 
 void AI::AiMove()
 {
-    static std::mt19937 rng(std::random_device{}());
-    static std::uniform_int_distribution<int> dist(0,2);
+    std::mt19937 rng(std::random_device{}());
+    std::uniform_int_distribution<int> dist(0,2);
     choice = dist(rng);
 
     Moves c = static_cast<Moves>(choice);
@@ -38,6 +38,11 @@ void AI::Draw()
         case Moves::SCISSOR:
                 DrawRectangle(250, 100, 80, 80, YELLOW);
                 DrawText("S", 250, 100, 80, WHITE);
+                break;
+
+        case Moves::NONE:
+                DrawRectangle(250, 100, 80, 80, BLACK);
+                DrawText("NONE", 250, 100, 20, WHITE);
                 break;
     }
 }
